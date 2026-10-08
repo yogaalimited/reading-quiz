@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172554">
+  <title>Reading Quiz Live</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">RQ</span><span>Reading Quiz <b>Live</b></span></a>
+    <div class="top-actions"><span id="connection" class="status-dot"><i></i> Demo mode</span><a class="text-link" href="teacher.html">Teacher dashboard ↗</a></div>
+  </header>
+  <main class="container">
+    <section id="joinView" class="hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> ENGLISH READING MICROTEACHING</div>
+        <h1>Read smart.<br><span>Think fast.</span></h1>
+        <p class="hero-sub">Join your class, answer reading questions, and climb the live leaderboard. Your next challenge starts here.</p>
+        <div class="feature-row"><span>⚡ Live rounds</span><span>📚 Reading skills</span><span>🏆 Class leaderboard</span></div>
+      </div>
+      <div class="join-card">
+        <div class="card-icon">✦</div>
+        <h2>Join the quiz</h2>
+        <p class="muted">Enter your details to enter the classroom.</p>
+        <form id="joinForm">
+          <label for="nickname">Your nickname</label>
+          <input id="nickname" name="nickname" maxlength="24" placeholder="e.g. Alex" autocomplete="nickname" required>
+          <label for="roomCode">Room code</label>
+          <input id="roomCode" name="roomCode" maxlength="8" placeholder="e.g. READ25" autocomplete="off" required>
+          <button class="btn btn-primary btn-full" type="submit">Join classroom <span>→</span></button>
+        </form>
+        <div class="privacy-note"><span>🔒</span> Your nickname is visible to classmates.</div>
+      </div>
+    </section>
+
+    <section id="lobbyView" class="hidden">
+      <div class="section-head"><div><div class="eyebrow">CLASSROOM LOBBY</div><h1>You're in the room.</h1><p class="muted">Hang tight — your teacher will start the quiz soon.</p></div><button id="leaveLobby" class="btn btn-outline">Leave room</button></div>
+      <div class="lobby-grid">
+        <div class="panel lobby-main"><div class="waiting-orb">⌛</div><h2>Waiting for the teacher</h2><p class="muted">Keep this page open. The quiz will appear here when it begins.</p><div class="room-code-display"><span>ROOM CODE</span><strong id="lobbyCode">—</strong><button id="copyCode" class="btn btn-small btn-outline">Copy</button></div><div class="pulse-line"><span></span><span></span><span></span></div></div>
+        <div class="panel"><div class="panel-title"><h3>Participants</h3><span id="participantCount" class="count-pill">1 joined</span></div><div id="participantList" class="participant-list"></div></div>
+      </div>
+    </section>
+
+    <section id="quizView" class="hidden">
+      <div class="quiz-top"><div><div class="eyebrow">READING QUIZ LIVE</div><div class="room-label">ROOM <b id="quizRoomCode">—</b></div></div><div class="timer-box"><span>TIME LEFT</span><strong id="timer">20</strong><small>seconds</small></div></div>
+      <div class="progress-track"><div id="progressBar" class="progress-fill"></div></div>
+      <div class="quiz-layout">
+        <article class="panel question-panel"><div class="question-meta"><span id="questionNumber" class="question-count">QUESTION 1 / 7</span><span id="questionPoints" class="points-pill">+100 pts</span></div><div id="passageBox" class="passage-box hidden"><div class="passage-label">READING PASSAGE</div><p id="passageText"></p></div><h2 id="questionText" class="question-title">Question loading…</h2><div id="answers" class="answers"></div><div id="answerFeedback" class="answer-feedback hidden"></div></article>
+        <aside class="panel side-panel"><div class="your-score"><span>YOUR SCORE</span><strong id="scoreValue">0</strong><small>points</small></div><div class="panel-title"><h3>Live leaderboard</h3><span class="live-pill"><i></i> LIVE</span></div><div id="leaderboard" class="leaderboard"></div><p class="small-muted">Rankings update as scores come in.</p></aside>
+      </div>
+    </section>
+
+    <section id="resultsView" class="hidden">
+      <div class="results-hero"><div class="trophy">🏆</div><div class="eyebrow">QUIZ COMPLETE</div><h1>Great work!</h1><p class="muted">Here's how you did in this reading challenge.</p><div class="final-score"><span>YOUR FINAL SCORE</span><strong id="finalScore">0</strong><small>points</small></div><div id="finalRank" class="rank-banner">You finished the quiz!</div></div>
+      <div class="panel results-panel"><div class="panel-title"><h2>Final leaderboard</h2><span id="resultCount" class="count-pill">0 players</span></div><div id="finalLeaderboard" class="leaderboard leaderboard-final"></div><button id="playAgain" class="btn btn-primary btn-full">Back to home</button></div>
+    </section>
+    <div id="toast" class="toast hidden" role="status"></div>
+  </main>
+  <footer><span>Reading Quiz Live</span><span>Learn together. Read beyond.</span></footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
